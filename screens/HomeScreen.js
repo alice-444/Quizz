@@ -49,6 +49,7 @@ export default function HomeScreen({ navigation }) {
             <Picker.Item label="Easy" value="easy" />
             <Picker.Item label="Medium" value="medium" />
             <Picker.Item label="Difficult" value="difficult" />
+            <Picker.Item label="Any Difficulty" value="Any Difficulty" />
           </Picker>
         </View>
         <View>
@@ -58,7 +59,6 @@ export default function HomeScreen({ navigation }) {
             onValueChange={(itemValue) => setCategory(itemValue)}
             style={styles.picker}
           >
-            <Picker.Item label="Select a category" value="" />
             {categories.map((categoryItem) => (
               <Picker.Item
                 key={categoryItem.id}
@@ -70,7 +70,7 @@ export default function HomeScreen({ navigation }) {
         </View>
       </View>
       <TouchableOpacity onPress={Start}>
-        <Text>Start Quiz</Text>
+        <Text>Start</Text>
       </TouchableOpacity>
     </View>
   );
