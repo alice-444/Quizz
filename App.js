@@ -9,7 +9,7 @@ import {
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import AskScreen from "./screens/askScreen.js";
+// import AskScreen from "./screens/AskScreen.js";
 import HomeScreen from "./screens/HomeScreen.js";
 import ResultScreen from "./screens/ResultScreen.js";
 
@@ -27,11 +27,11 @@ export default function App() {
             component={HomeScreen}
             options={{ title: "Home" }}
           />
-          <Stack.Screen
+          {/* <Stack.Screen
             name="Quizz"
             component={AskScreen}
             options={{ title: "Quizz" }}
-          />
+          /> */}
           <Stack.Screen
             name="Result"
             component={ResultScreen}
