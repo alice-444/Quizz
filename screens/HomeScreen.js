@@ -1,12 +1,19 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useAppContext } from "../appContext.js";
 import { Picker } from "@react-native-picker/picker";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
 export default function HomeScreen({ navigation }) {
-  const { mode, setMode, category, setCategory, categories, setCategories } =
-    useAppContext();
+  const {
+    mode,
+    setMode,
+    category,
+    setCategory,
+    categories,
+    setCategories,
+    setScore,
+  } = useAppContext();
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -24,6 +31,7 @@ export default function HomeScreen({ navigation }) {
   }, []);
 
   const Start = async () => {
+    setScore(0);
     try {
       const response = await axios.get(
         `https://opentdb.com/api.php?amount=10&type=multiple&difficulty=${mode}&category=${category}&encode=url3986`
@@ -36,12 +44,17 @@ export default function HomeScreen({ navigation }) {
     }
   };
 
+  const ResetSettings = () => {
+    setMode("easy");
+    setCategory("");
+  };
+
   return (
-    <View style={styles.container}>
+    <View className="flex-1 items-center justify-center bg-white">
       <View>
-        <Text>Welcome to the Quiz App</Text>
+        <Text className="text-3xl font-semibold">Welcome to the Quiz App</Text>
         <View>
-          <Text>Select Difficulty:</Text>
+          <Text className="text-xl">Select Difficulty :</Text>
           <Picker
             selectedValue={mode}
             onValueChange={(itemValue) => setMode(itemValue)}
@@ -53,7 +66,7 @@ export default function HomeScreen({ navigation }) {
           </Picker>
         </View>
         <View>
-          <Text>Select Category:</Text>
+          <Text className="text-xl">Select Category:</Text>
           <Picker
             selectedValue={category}
             onValueChange={(itemValue) => setCategory(itemValue)}
@@ -71,6 +84,9 @@ export default function HomeScreen({ navigation }) {
       </View>
       <TouchableOpacity onPress={Start}>
         <Text>Start</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={ResetSettings}>
+        <Text>Reset Settings</Text>
       </TouchableOpacity>
     </View>
   );

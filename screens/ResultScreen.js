@@ -9,7 +9,7 @@ export default function ResultScreen({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
+    <View className="flex-1 items-center justify-center bg-white">
       <Text>Result</Text>
       <Text>Score</Text>
       <Text>

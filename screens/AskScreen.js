@@ -48,7 +48,7 @@ export default function AskScreen({ route, navigation }) {
   const currentQuestion = questions[currentQuestionIndex];
 
   return (
-    <View style={styles.container}>
+    <View className="flex-1 items-center justify-center bg-white">
       <Text>
         Score: {score}/ Answered Question(s): {questionsAnswered}/
         {totalQuestions}
