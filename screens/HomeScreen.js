@@ -38,21 +38,21 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.innerContainer}>
-        <View style={styles.modeContainer}>
-          <Text>Mode :</Text>
+      <View>
+        <Text>Welcome to the Quiz App</Text>
+        <View>
+          <Text>Select Difficulty:</Text>
           <Picker
             selectedValue={mode}
             onValueChange={(itemValue) => setMode(itemValue)}
-            style={styles.picker}
           >
             <Picker.Item label="Easy" value="easy" />
             <Picker.Item label="Medium" value="medium" />
             <Picker.Item label="Difficult" value="difficult" />
           </Picker>
         </View>
-        <View style={styles.modeContainer}>
-          <Text>Categories :</Text>
+        <View>
+          <Text>Select Category:</Text>
           <Picker
             selectedValue={category}
             onValueChange={(itemValue) => setCategory(itemValue)}
@@ -70,7 +70,7 @@ export default function HomeScreen({ navigation }) {
         </View>
       </View>
       <TouchableOpacity onPress={Start}>
-        <Text>Start</Text>
+        <Text>Start Quiz</Text>
       </TouchableOpacity>
     </View>
   );
@@ -82,19 +82,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    paddingHorizontal: 20,
-  },
-  innerContainer: {
-    alignItems: "center",
-  },
-  modeContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 20,
+    paddingHorizontal: 10,
   },
   picker: {
     height: 50,
-    width: 200,
-    marginTop: 10,
+    marginLeft: 10,
   },
 });
