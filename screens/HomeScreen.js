@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useAppContext } from "../appContext.js";
 import { Picker } from "@react-native-picker/picker";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
 export default function HomeScreen({ navigation }) {
-  const [mode, setMode] = useState("easy");
-  const [category, setCategory] = useState("");
-  const [categories, setCategories] = useState([]);
+  const { mode, setMode, category, setCategory, categories, setCategories } =
+    useAppContext();
 
   useEffect(() => {
     const fetchCategories = async () => {
