@@ -1,6 +1,5 @@
-// import { StatusBar } from "expo-status-bar";
 import { AppProvider } from "./appContext.js";
-import { StatusBar, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -13,7 +12,6 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
       <AppProvider>
         <NavigationContainer>
           <Stack.Navigator>
@@ -30,7 +28,7 @@ export default function App() {
             <Stack.Screen
               name="Result"
               component={ResultScreen}
-              options={{ title: "Result Quiz" }}
+              options={{ title: "Result Quizz" }}
             />
           </Stack.Navigator>
         </NavigationContainer>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAppContext } from "../appContext.js";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 
 export default function AskScreen({ route, navigation }) {
   const { score, setScore, totalQuestions, setTotalQuestions } =
@@ -12,8 +12,18 @@ export default function AskScreen({ route, navigation }) {
 
   useEffect(() => {
     const { questions } = route.params;
-    setQuestions(questions);
-    setTotalQuestions(questions.length);
+    const decodedQuestions = questions.map((question) => {
+      return {
+        ...question,
+        correct_answer: decodeURIComponent(question.correct_answer),
+        incorrect_answers: question.incorrect_answers.map((answer) =>
+          decodeURIComponent(answer)
+        ),
+        question: decodeURIComponent(question.question),
+      };
+    });
+    setQuestions(decodedQuestions);
+    setTotalQuestions(decodedQuestions.length);
   }, [route.params]);
 
   const HandleAnswer = (answer) => {
@@ -49,12 +59,13 @@ export default function AskScreen({ route, navigation }) {
 
   return (
     <View className="flex-1 items-center justify-center bg-gray-100">
-      <Text className="text-lg font-semibold text-gray-700 mt-4">
-        Score: {score}
-      </Text>
-      <Text className="text-lg font-semibold text-gray-700 mt-4">
+      <Text className="text-xl font-semibold text-gray-700 mt-4">
         Answered Question(s): {questionsAnswered}/{totalQuestions}
       </Text>
+      <Text className="text-xl font-semibold text-gray-700 mt-4">
+        Score: {score}
+      </Text>
+
       <Text className="text-lg text-gray-800 mt-4">
         {currentQuestion.question}
       </Text>
@@ -90,12 +101,3 @@ export default function AskScreen({ route, navigation }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

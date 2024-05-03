@@ -1,5 +1,5 @@
 import { useAppContext } from "../appContext.js";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 
 export default function ResultScreen({ navigation }) {
   const { score, totalQuestions } = useAppContext();
@@ -29,24 +29,14 @@ export default function ResultScreen({ navigation }) {
         onPress={Restart}
         className="mt-4 bg-blue-300 px-4 py-2 rounded"
       >
-        <Text className="text-white">Retry</Text>
+        <Text className="text-white text-lg">Retry</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={Restart}
         className="mt-4 bg-blue-400 px-4 py-2 rounded"
       >
-        <Text className="text-white">Home</Text>
+        <Text className="text-white text-lg">Home</Text>
       </TouchableOpacity>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: 10,
-  },
-});
