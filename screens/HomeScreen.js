@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect } from "react";
+import { Ionicons } from "@expo/vector-icons";
 import { useAppContext } from "../appContext.js";
 import { Picker } from "@react-native-picker/picker";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
@@ -50,14 +51,22 @@ export default function HomeScreen({ navigation }) {
   };
 
   return (
-    <View className="flex-1 items-center justify-center bg-white">
+    <View className="flex-1 items-center justify-center bg-white p-4">
       <View>
-        <Text className="text-3xl font-semibold">Welcome to the Quiz App</Text>
-        <View>
-          <Text className="text-xl">Select Difficulty :</Text>
+        <Text className="text-3xl font-semibold mb-4 text-red-400">
+          Welcome to the Quiz App
+        </Text>
+        <Text className="text-base font-semibold mb-4 text-red-300 text-center">
+          Test your knowledge with the Quiz App!
+        </Text>
+        <View className="mb-4">
+          <Text className="text-xl mb-2 text-gray-700 text-center">
+            Select Difficulty :
+          </Text>
           <Picker
             selectedValue={mode}
             onValueChange={(itemValue) => setMode(itemValue)}
+            className="w-full mt-2 p-2 border border-gray-300 rounded"
           >
             <Picker.Item label="Easy" value="easy" />
             <Picker.Item label="Medium" value="medium" />
@@ -65,12 +74,14 @@ export default function HomeScreen({ navigation }) {
             <Picker.Item label="Any Difficulty" value="Any Difficulty" />
           </Picker>
         </View>
-        <View>
-          <Text className="text-xl">Select Category:</Text>
+        <View className="mb-4">
+          <Text className="text-xl mb-2 text-gray-700 text-center">
+            Select Category:
+          </Text>
           <Picker
             selectedValue={category}
             onValueChange={(itemValue) => setCategory(itemValue)}
-            style={styles.picker}
+            className="w-full mt-2 p-2 border border-gray-300 rounded"
           >
             {categories.map((categoryItem) => (
               <Picker.Item
@@ -82,26 +93,32 @@ export default function HomeScreen({ navigation }) {
           </Picker>
         </View>
       </View>
-      <TouchableOpacity onPress={Start}>
-        <Text>Start</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={ResetSettings}>
-        <Text>Reset Settings</Text>
-      </TouchableOpacity>
+      <View className="flex flex-row justify-between">
+        <TouchableOpacity
+          onPress={Start}
+          className="bg-red-300 px-4 py-2 rounded-md flex items-center justify-center text-white mb-2 mx-2"
+        >
+          <Ionicons
+            name="play-outline"
+            size={24}
+            color="white"
+            className="mr-2"
+          />
+          <Text className="text-white text-xl ml-2 text-center">Start</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={ResetSettings}
+          className="bg-gray-400 px-4 py-2 rounded-md flex items-center justify-center text-gray-700 mb-2 mx-2"
+        >
+          <Ionicons
+            name="refresh-outline"
+            size={24}
+            color="white"
+            className="mr-2"
+          />
+          <Text className="text-xl text-white ml-2">Reset Settings</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingHorizontal: 10,
-  },
-  picker: {
-    height: 50,
-    marginLeft: 10,
-  },
-});

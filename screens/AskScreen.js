@@ -48,12 +48,16 @@ export default function AskScreen({ route, navigation }) {
   const currentQuestion = questions[currentQuestionIndex];
 
   return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <Text>
-        Score: {score}/ Answered Question(s): {questionsAnswered}/
-        {totalQuestions}
+    <View className="flex-1 items-center justify-center bg-gray-100">
+      <Text className="text-lg font-semibold text-gray-700 mt-4">
+        Score: {score}
       </Text>
-      <Text>{currentQuestion.question}</Text>
+      <Text className="text-lg font-semibold text-gray-700 mt-4">
+        Answered Question(s): {questionsAnswered}/{totalQuestions}
+      </Text>
+      <Text className="text-lg text-gray-800 mt-4">
+        {currentQuestion.question}
+      </Text>
       {currentQuestion.incorrect_answers
         .concat(currentQuestion.correct_answer)
         .sort(() => Math.random() - 0.5)
@@ -62,14 +66,25 @@ export default function AskScreen({ route, navigation }) {
             key={index}
             onPress={() => HandleAnswer(answer)}
             disabled={userAnswer !== null}
+            className={
+              "px-4 py-2 mt-4 rounded " +
+              (userAnswer === answer
+                ? answer === currentQuestion.correct_answer
+                  ? "bg-green-200"
+                  : "bg-red-400"
+                : "bg-blue-300 text-white")
+            }
           >
             <Text>{answer}</Text>
           </TouchableOpacity>
         ))}
 
       {userAnswer !== null && (
-        <TouchableOpacity onPress={HandleNext}>
-          <Text>Next Question</Text>
+        <TouchableOpacity
+          onPress={HandleNext}
+          className="mt-8 bg-blue-400 px-4 py-2 rounded"
+        >
+          <Text className="text-white">Next Question</Text>
         </TouchableOpacity>
       )}
     </View>
